@@ -40,4 +40,3 @@ const meet = meeting.bind(this); // created new function and assigning meeting f
 // that means it wil call every time the meeting function when the meet is called with
 //"this" which is the global or window object here
 meet();
-
