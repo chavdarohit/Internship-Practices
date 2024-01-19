@@ -4,6 +4,7 @@ const app = new koa();
 const router = new koarouter();
 const db = require("./dbacess");
 const bodyParser = require("koa-bodyparser");
+const bcrypt = require("bcrypt");
 
 async function signupInsert(ctx) {
   let fname = "rohit";
@@ -15,10 +16,11 @@ async function signupInsert(ctx) {
 
   try {
     if (validateUser(fname, lname, pssd, confpssd, email, mno)) {
+      let encryptedpssd = await bcrypt.hash(pssd, 10);
       const objdata = {
         firstname: fname,
         lastname: lname,
-        password: pssd,
+        password: encryptedpssd,
         email: email,
         mobile: mno,
       };
